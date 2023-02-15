@@ -11,12 +11,19 @@ const serverFailureMessage = 'Ups, API Error. please try again!';
 const cacheFailureMessage = 'Ups, chache failed. Please try again!';
 
 class QuotesCubit extends Cubit<QuotesState> {
-  QuotesCubit({required this.quoteUseCases}) : super(QuotesInitial());
+  QuotesCubit({required this.quoteUseCases}) : super(const QuotesInitial()) {
+    init();
+  }
 
   final QuotesUseCases quoteUseCases;
+  //final GrammarNavigator router;
+
+  void init() {
+    quoteRequested();
+  }
 
   void quoteRequested() async {
-    emit(QuotesStateLoading());
+    emit(const QuotesStateLoading());
 
     final failureOrQuote = await quoteUseCases.getQuote();
     failureOrQuote.fold(
