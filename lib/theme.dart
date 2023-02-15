@@ -33,6 +33,12 @@ class AppTheme {
       fontSize: 20,
       fontWeight: FontWeight.bold);
 
+  static const TextStyle _lightTitleText = TextStyle(
+      color: _lightTextColorPrimary,
+      fontFamily: "Rubik",
+      fontSize: 40,
+      fontWeight: FontWeight.bold);
+
   static const TextStyle _lightBodyText = TextStyle(
       color: _lightTextColorPrimary,
       fontFamily: "Rubik",
@@ -42,6 +48,7 @@ class AppTheme {
 
   static const TextTheme _lightTextTheme = TextTheme(
     headline1: _lightHeadingText,
+    headline2: _lightTitleText,
     bodyText1: _lightBodyText,
   );
 
@@ -51,12 +58,16 @@ class AppTheme {
   static final TextStyle _darkThemeHeadingTextStyle =
       _lightHeadingText.copyWith(color: _darkTextColorPrimary);
 
-  static final TextStyle _darkThemeBodyeTextStyle =
+  static final TextStyle _darkThemeTitleTextStyle =
+      _lightTitleText.copyWith(color: _darkTextColorPrimary);
+
+  static final TextStyle _darkThemeBodyTextStyle =
       _lightBodyText.copyWith(color: _darkTextColorPrimary);
 
   static final TextTheme _darkTextTheme = TextTheme(
     headline1: _darkThemeHeadingTextStyle,
-    bodyText1: _darkThemeBodyeTextStyle,
+    headline2: _darkThemeTitleTextStyle,
+    bodyText1: _darkThemeBodyTextStyle,
   );
 
   // *****************
