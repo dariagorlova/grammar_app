@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:grammar_app/presentation/pages/greeting/widgets/custom_button.dart';
+import 'package:grammar_app/presentation/pages/widgets/custom_button.dart';
 import 'package:mockito/mockito.dart';
 
 abstract class OnCustomButtonTap {
@@ -10,11 +10,12 @@ abstract class OnCustomButtonTap {
 class MockOnCustomButtonTap extends Mock implements OnCustomButtonTap {}
 
 void main() {
-  Widget widgetUnderMethod({Function()? callback}) {
+  Widget widgetUnderMethod({Function()? callback, String? title}) {
     return MaterialApp(
       home: Scaffold(
         body: CustomButton(
-          onTap: callback,
+          onTap: callback!,
+          title: title!,
         ),
       ),
     );
@@ -31,7 +32,7 @@ void main() {
             (widgetTester) async {
               await widgetTester.pumpWidget(widgetUnderMethod());
 
-              final buttonLabelFinder = find.text('Get Quote');
+              final buttonLabelFinder = find.text("Let's get started");
 
               expect(buttonLabelFinder, findsOneWidget);
             },

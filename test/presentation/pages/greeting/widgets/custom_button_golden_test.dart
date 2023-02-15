@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:grammar_app/presentation/pages/greeting/widgets/custom_button.dart';
+import 'package:grammar_app/presentation/pages/widgets/custom_button.dart';
 
 void main() {
-  Widget widgetUnderTest({Function()? onTap}) {
+  Widget widgetUnderTest({Function()? onTap, String? title}) {
     return MaterialApp(
       home: Scaffold(
         body: CustomButton(
-          onTap: onTap,
+          onTap: onTap!,
+          title: title!,
         ),
       ),
     );

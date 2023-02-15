@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:grammar_app/domain/entities/quote_entity.dart';
-import 'package:grammar_app/presentation/core/services/theme_service.dart';
+import 'package:grammar_app/core/services/theme_service.dart';
 import 'package:grammar_app/presentation/pages/greeting/cubit/quotes_cubit.dart';
 import 'package:grammar_app/presentation/pages/greeting/greeting_screen.dart';
 import 'package:grammar_app/presentation/pages/greeting/widgets/error_message.dart';

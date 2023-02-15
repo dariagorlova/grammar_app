@@ -15,7 +15,7 @@ void main() {
       test('when Client response was 200 and has valid data', () async {
         final mockClient = MockClient();
         final adviceRemoteDatasourceUnderTest =
-            QuotesLocalDatasourceImpl(client: mockClient);
+            QuotesRemoteDatasourceImpl(client: mockClient);
         const responseBody = '{"advice": "test advice", "advice_id": 1}';
 
         when(mockClient.get(
@@ -38,7 +38,7 @@ void main() {
       test('a ServerException when Client response was not 200', () {
         final mockClient = MockClient();
         final adviceRemoteDatasourceUnderTest =
-            QuotesLocalDatasourceImpl(client: mockClient);
+            QuotesRemoteDatasourceImpl(client: mockClient);
 
         when(mockClient.get(
           Uri.parse('https://api.flutter-community.com/api/v1/advice'),
@@ -55,7 +55,7 @@ void main() {
           () {
         final mockClient = MockClient();
         final adviceRemoteDatasourceUnderTest =
-            QuotesLocalDatasourceImpl(client: mockClient);
+            QuotesRemoteDatasourceImpl(client: mockClient);
         const responseBody = '{"advice": "test advice"}';
 
         when(mockClient.get(

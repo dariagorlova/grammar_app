@@ -18,7 +18,9 @@ void main() {
 
         blocTest(
           'nothing when no method is called',
-          build: () => QuotesCubit(quoteUseCases: mockQuotesUseCases),
+          build: () => QuotesCubit(
+            quoteUseCases: mockQuotesUseCases,
+          ),
           expect: () => const <QuotesState>[],
         );
 
@@ -31,7 +33,9 @@ void main() {
               ),
             ),
           ),
-          build: () => QuotesCubit(quoteUseCases: mockQuotesUseCases),
+          build: () => QuotesCubit(
+            quoteUseCases: mockQuotesUseCases,
+          ),
           act: (cubit) => cubit.quoteRequested(),
           expect: () => const <QuotesState>[
             QuotesStateLoading(),
@@ -57,7 +61,9 @@ void main() {
                   ),
                 ),
               ),
-              build: () => QuotesCubit(quoteUseCases: mockQuotesUseCases),
+              build: () => QuotesCubit(
+                quoteUseCases: mockQuotesUseCases,
+              ),
               act: (cubit) => cubit.quoteRequested(),
               expect: () => const <QuotesState>[
                 QuotesStateLoading(),
@@ -74,7 +80,9 @@ void main() {
                   ),
                 ),
               ),
-              build: () => QuotesCubit(quoteUseCases: mockQuotesUseCases),
+              build: () => QuotesCubit(
+                quoteUseCases: mockQuotesUseCases,
+              ),
               act: (cubit) => cubit.quoteRequested(),
               expect: () => const <QuotesState>[
                 QuotesStateLoading(),
@@ -91,7 +99,9 @@ void main() {
                   ),
                 ),
               ),
-              build: () => QuotesCubit(quoteUseCases: mockQuotesUseCases),
+              build: () => QuotesCubit(
+                quoteUseCases: mockQuotesUseCases,
+              ),
               act: (cubit) => cubit.quoteRequested(),
               expect: () => const <QuotesState>[
                 QuotesStateLoading(),

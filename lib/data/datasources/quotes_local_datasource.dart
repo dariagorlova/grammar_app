@@ -16,32 +16,30 @@ abstract class QuotesLocalDatasource {
   Future<QuoteModel> getRandomQuoteFromRepo();
 }
 
-// class QuotesLocalDatasourceImpl implements QuotesLocalDatasource {
-//   final http.Client client;
-//   QuotesLocalDatasourceImpl({required this.client});
-
-//   @override
-//   Future<QuoteModel> getRandomQuoteFromRepo() async {
-//     var jsonText = await rootBundle.loadString('assets/quotes.json');
-
-//     final data = json.decode(jsonText);
-
-//     final randomIndex = Random().nextInt(11);
-
-//     final currentQuote = QuoteModel(
-//       quote: data[randomIndex]['text'],
-//       id: data[randomIndex]['id'],
-//       author: data[randomIndex]['author'],
-//     );
-
-//     //return QuoteModel.fromJson(data[0]);
-//     return currentQuote;
-//   }
-// }
-
 class QuotesLocalDatasourceImpl implements QuotesLocalDatasource {
+  QuotesLocalDatasourceImpl();
+
+  @override
+  Future<QuoteModel> getRandomQuoteFromRepo() async {
+    var jsonText = await rootBundle.loadString('assets/quotes.json');
+
+    final data = json.decode(jsonText);
+
+    final randomIndex = Random().nextInt(data.length);
+
+    final currentQuote = QuoteModel(
+      quote: data[randomIndex]['text'],
+      id: data[randomIndex]['id'],
+      author: data[randomIndex]['author'],
+    );
+
+    return currentQuote;
+  }
+}
+
+class QuotesRemoteDatasourceImpl implements QuotesLocalDatasource {
   final http.Client client;
-  QuotesLocalDatasourceImpl({required this.client});
+  QuotesRemoteDatasourceImpl({required this.client});
 
   @override
   Future<QuoteModel> getRandomQuoteFromRepo() async {
@@ -57,7 +55,5 @@ class QuotesLocalDatasourceImpl implements QuotesLocalDatasource {
       final responseBody = json.decode(response.body);
       return QuoteModel.fromJson(responseBody);
     }
-    //final responseBody = json.decode('assets/quotes.json');
-    //return QuoteModel.fromJson(responseBody);
   }
 }
