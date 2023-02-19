@@ -9,6 +9,9 @@ class ThemesUseCases {
 
   Either<Failure, List<ThemeEntity>> getThemesByGroup(int groupId) {
     return themesRepo.getThemesFromDatasourceByGroup(groupId);
-    // space for business logic
+  }
+
+  Either<Failure, ThemeEntity> getThemesById(int themeId) {
+    return themesRepo.getThemeFromDatasourceById(themeId);
   }
 }

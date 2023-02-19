@@ -2,6 +2,7 @@ import 'package:grammar_app/domain/entities/theme_entity.dart';
 
 abstract class ThemesLocalDatasource {
   List<ThemeEntity> getThemesFromRepoByGroup(int groupId);
+  ThemeEntity getThemeFromRepoById(int themeId);
 }
 
 class ThemesLocalDatasourceImpl implements ThemesLocalDatasource {
@@ -36,7 +37,7 @@ class ThemesLocalDatasourceImpl implements ThemesLocalDatasource {
       id: 4,
       groupId: 1,
       title: 'Present Simple',
-      pathToContent: 'assets/present_simple.md',
+      pathToContent: 'assets/themes/present_simple.md',
     ),
     ThemeEntity(
       id: 5,
@@ -104,10 +105,21 @@ class ThemesLocalDatasourceImpl implements ThemesLocalDatasource {
 
   @override
   List<ThemeEntity> getThemesFromRepoByGroup(int groupId) {
-    final List<ThemeEntity> result = allThemes.map((element) {
-      element.groupId == groupId;
-    }).toList() as List<ThemeEntity>;
-
+    // final List<ThemeEntity> result = allThemes.map((element) {
+    //   element.groupId == groupId;
+    // }).toList() as List<ThemeEntity>;
+    var result = <ThemeEntity>[];
+    for (var th in allThemes) {
+      if (th.groupId == groupId) result.add(th);
+    }
     return result;
+  }
+
+  @override
+  ThemeEntity getThemeFromRepoById(int themeId) {
+    // return allThemes.map((element) {
+    //   element.id == themeId;
+    // }) as ThemeEntity;
+    return allThemes.firstWhere((element) => element.id == themeId);
   }
 }

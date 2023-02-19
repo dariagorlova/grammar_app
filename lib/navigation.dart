@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:grammar_app/core/services/navigator.dart';
+import 'package:grammar_app/domain/entities/theme_entity.dart';
 import 'package:grammar_app/presentation/pages/all_themes/all_themes_screen.dart';
 import 'package:grammar_app/presentation/pages/greeting/greeting_screen.dart';
 import 'package:grammar_app/presentation/pages/one_theme/themes_screen.dart';
@@ -15,20 +16,21 @@ class NavigationImpl implements AppNavigation {
         },
         NavigationRouteNames.allThemes: (context) =>
             const AllThemesScreenWrapperProvider(),
-        NavigationRouteNames.oneTheme: (context) => const ThemeScreen(),
       };
 
   @override
   Route<Object> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case NavigationRouteNames.oneTheme:
+        final group = settings.arguments is ThemeEntity
+            ? settings.arguments as ThemeEntity
+            : const ThemeEntity(
+                groupId: -1,
+                id: -1,
+                title: 'theme not found',
+                pathToContent: '');
         return MaterialPageRoute(
-          builder: (context) => const ThemeScreen(),
-        );
-
-      case NavigationRouteNames.allThemes:
-        return MaterialPageRoute(
-          builder: (context) => const AllThemesScreenWrapperProvider(),
+          builder: (context) => ThemeScreenWrapperProvider(group: group),
         );
 
       default:
@@ -53,8 +55,11 @@ class NavigationActions {
     navigatorKey.currentState?.pushNamed(NavigationRouteNames.allThemes);
   }
 
-  void showOneTheme() {
-    navigatorKey.currentState?.pushNamed(NavigationRouteNames.oneTheme);
+  void showOneTheme(ThemeEntity group) {
+    navigatorKey.currentState?.pushNamed(
+      NavigationRouteNames.oneTheme,
+      arguments: group,
+    );
   }
 
   // void showLessonDetailsScreen(LessonEntity data) {
