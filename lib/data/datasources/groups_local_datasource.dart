@@ -21,19 +21,19 @@ class GroupsLocalDatasourceImpl implements GroupsLocalDatasource {
         title: 'Present',
         id: 1,
         description: 'Поговоримо про теперешнє',
-        colorBackground: Colors.yellow,
+        colorBackground: Colors.grey,
       ),
       GroupEntity(
         title: 'Future',
         id: 2,
         description: 'Поговоримо про майбутнє',
-        colorBackground: Colors.green,
+        colorBackground: Colors.red,
       ),
       GroupEntity(
         title: 'Conditionals',
         id: 3,
         description: 'Умовні речення',
-        colorBackground: Colors.blue,
+        colorBackground: Colors.grey,
       ),
     ];
   }

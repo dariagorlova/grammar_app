@@ -12,8 +12,26 @@ class ThemesRepoImpl implements ThemesRepository {
   @override
   Either<Failure, List<ThemeEntity>> getThemesFromDatasourceByGroup(
       int groupId) {
+    // try {
+    //   final result = themesLocalDatasource.getThemesFromRepoByGroup(groupId);
+    //   return right(result);
+    // } on ServerException catch (_) {
+    //   return left(ServerFailure());
+    // } catch (e) {
+    //   return left(GeneralFailure());
+    // }
     try {
       final result = themesLocalDatasource.getThemesFromRepoByGroup(groupId);
+      return right(result);
+    } catch (e) {
+      return left(GeneralFailure());
+    }
+  }
+
+  @override
+  Either<Failure, ThemeEntity> getThemeFromDatasourceById(int themeId) {
+    try {
+      final result = themesLocalDatasource.getThemeFromRepoById(themeId);
       return right(result);
     } on ServerException catch (_) {
       return left(ServerFailure());
